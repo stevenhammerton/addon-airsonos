@@ -51,5 +51,11 @@ if bashio::config.true 'drift'; then
     options+=(-r)
 fi
 
+if bashio::config.has_value 'http_length'; then
+    options+=(-g "$(bashio::config 'http_length')")
+fi
+
+bashio::log.info "with options ${options[@]}"
+
 # Run the AirSonos server
 exec airsonos "${options[@]}"
