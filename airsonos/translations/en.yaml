@@ -31,3 +31,15 @@ configuration:
     name: Drift
     description: >-
       Allow to let timing reference drift (no click).
+  http_length:
+    name: HTTP Length
+    description: >-
+      The default mode of AirUPnP is "no content-length" (\<http_length\> = -1) but
+      unfortunately, some players can't deal with that. You can then try
+      "chunked-encoding" (\<http_length> = -3) but some players who claim to be HTTP
+      1.1 do not support it. There is a last resort option to add a large fake
+      `content-length` (\<http_length\> = 0). It is set to 2^31-1, so around 5 hours
+      of playback with flac re-encoding. Note that if player is HTTP 1.0 and
+      http_header is set to -3, AirUPnP will fallback no content-length. The command
+      line option `-g` has the same effect that \<http_length\> in the \<common\>
+      section of a config file.
